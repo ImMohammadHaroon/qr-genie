@@ -30,7 +30,7 @@ export const QRGenerator = () => {
             transition={{ delay: 0.2 }}
             className="text-2xl font-bold text-foreground"
           >
-            QR Code Generator
+            Devowl QR Generator
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0 }}
