@@ -57,7 +57,7 @@ export const LinkTab = () => {
           type="url"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
-          placeholder="Apna URL yahan paste karen..."
+          placeholder="Please paste your URL..."
           className="w-full rounded-xl border border-border bg-secondary/50 px-12 py-4 text-foreground placeholder:text-muted-foreground backdrop-blur-md focus:border-primary/50 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-300"
         />
       </div>
