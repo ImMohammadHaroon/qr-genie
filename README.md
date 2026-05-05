@@ -1,72 +1,69 @@
 
-## Project info
+## QR Genie
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+QR Genie is a **Vite + React + TypeScript** web app for generating QR codes (with a modern UI built using **shadcn/ui** + **Tailwind CSS**) and optional **Supabase** integration.
 
-## How can I edit this code?
+### Tech stack
 
-There are several ways of editing your application.
+- React 18 + TypeScript
+- Vite
+- Tailwind CSS + shadcn/ui (Radix UI)
+- Supabase (`@supabase/supabase-js`)
 
-**Use Lovable**
+### Project structure
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+```txt
+.
+├─ public/                 # static assets
+├─ src/
+│  ├─ components/          # UI + app components (QR generator, tabs, etc.)
+│  ├─ integrations/
+│  │  └─ supabase/         # supabase client + generated types
+│  ├─ pages/               # routes/pages
+│  ├─ lib/                 # shared utilities
+│  ├─ main.tsx             # app entry
+│  └─ App.tsx              # app root
+└─ supabase/               # migrations + config
+```
 
-Changes made via Lovable will be committed automatically to this repo.
+### Setup (local development)
 
-**Use your preferred IDE**
+Prerequisites: **Node.js 18+** and **npm**.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+1) Install dependencies
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+```bash
+npm install
+```
 
-Follow these steps:
+2) Create your environment file
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+```bash
+cp .env.example .env
+```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+3) Fill in `.env` values (from your Supabase project settings)
 
-# Step 3: Install the necessary dependencies.
-npm i
+- `VITE_SUPABASE_URL`
+- `VITE_SUPABASE_PUBLISHABLE_KEY`
+- (optional) `VITE_SUPABASE_PROJECT_ID`
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+4) Run the dev server
+
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### Build & preview
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```bash
+npm run build
+npm run preview
+```
 
-**Use GitHub Codespaces**
+### Supabase “keep alive” workflow
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+This repo includes a GitHub Actions workflow at `.github/workflows/keep-alive.yml` that pings your Supabase REST endpoint daily.
 
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+- Add the GitHub secret **`SUPABASE_ANON_KEY`** in your repo settings
+- Replace `<your-project-ref>` in the workflow URL with your Supabase project ref (the subdomain prefix)
